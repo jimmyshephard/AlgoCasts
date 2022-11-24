@@ -10,15 +10,14 @@
 
 function chunk(array, size) {
   const chunked = [];
-// retrieve last element in chunked
-  // is it of length size
-  // if not, push a new chunk adding current elem to it
-  // otherwise push to that chunk
-
   for (let elem of array) {
-    // last elem of chunked ... ?
+    let lastIndex = chunked.length - 1;
+    if (lastIndex >=0 && chunked[lastIndex].length < size) {
+      chunked[lastIndex].push(elem);
+    } else {
+      chunked.push([elem]);
+    }
   }
-
   return chunked;
 }
 

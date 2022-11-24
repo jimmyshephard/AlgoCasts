@@ -8,6 +8,29 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams(stringA, stringB) {}
+function anagrams(stringA, stringB) {
+  const mapA = getCharMap(stringA);
+  const mapB = getCharMap(stringB);
+
+  if (Object.keys(mapA).length !== Object.keys(mapB).length)
+    return false;
+
+  let isAnagram = true;
+
+  Object.keys(mapA).forEach(v => {
+    if (mapA[v] !== mapB[v])
+      isAnagram = false;
+  });
+
+  return isAnagram;
+}
+
+function getCharMap(str) {
+  const map = {};
+  for (let char of str.replace(/\W/g, '').toLowerCase()) {
+    map[char] = map[char] + 1 || 1;
+  }
+  return map;
+}
 
 module.exports = anagrams;
